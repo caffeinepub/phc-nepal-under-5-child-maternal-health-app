@@ -1,0 +1,85 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T08:46:38.510Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 0,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a complete Web App Manifest (manifest.json) in the frontend/public directory with app name 'PHC Nepal Child & Maternal Health', short name 'PHC Nepal', description referencing the maternal and child health focus, start URL, display mode set to 'standalone', background color and theme color matching the app's earthy green/saffron palette, and all required icon sizes (72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512) for Google Play Store compatibility.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/manifest.json",
+          "frontend/index.html"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Register a service worker (sw.js) in frontend/public that implements a cache-first strategy for static assets and a network-first strategy for API calls, enabling full offline functionality for previously visited pages. Register the service worker from main.tsx or index.html.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/sw.js",
+          "frontend/src/main.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add all required PWA meta tags to frontend/index.html including apple-touch-icon, apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, apple-mobile-web-app-title, theme-color, and viewport meta tags optimized for mobile display.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/index.html"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Generate PWA app icons in all required sizes (192x192 and 512x512 minimum, ideally full set) and place them in frontend/public/icons. Icons should use the PHC Nepal earthy green color scheme with a recognizable health/maternal symbol consistent with the app's visual identity.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/icons/icon-192.png",
+          "frontend/public/icons/icon-512.png",
+          "frontend/public/icons/icon-72.png",
+          "frontend/public/icons/icon-96.png",
+          "frontend/public/icons/icon-128.png",
+          "frontend/public/icons/icon-144.png",
+          "frontend/public/icons/icon-152.png",
+          "frontend/public/icons/icon-384.png"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Add an 'Add to Home Screen' install prompt banner in the app UI (visible on the dashboard or login page) that detects the beforeinstallprompt event and shows a dismissible banner encouraging users to install the app on their Android device.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/InstallPromptBanner.tsx",
+          "frontend/src/i18n/translations/en.ts",
+          "frontend/src/i18n/translations/hi.ts",
+          "frontend/src/i18n/translations/ne.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/pwa-icon-192.dim_192x192.png",
+    "frontend/public/assets/generated/pwa-icon-512.dim_512x512.png",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "PWA optimization for Android Google Play Store packaging",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create complete Web App Manifest with PHC Nepal branding, standalone display mode, and all required icon sizes for Google Play Store compatibility",
+      "acceptanceCriteria": [
+        "manifest.json is present in frontend/public and linked in index.html via <link rel='manifest'>",
+        "manifest includes name, short_name, description, start_url, display: standalone, theme_color, background_color, and icons array",
+        "Icons array covers all PWA-required sizes including 192x192 and 512x512",
+        "App installs correctly as a standalone PWA when opened in Chrome on Android"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/manifest.json",
+          "operation": "create",
+          "description": "Create Web App Manifest with name 'PHC Nepal Child & Maternal Health', short_name 'PHC Nepal', description focusing on maternal and child health, start_url '/', display 'standalone', theme_color and background_color matching the app's earthy green palette (--primary OKLCH values), and icons array referencing all generated icon sizes (72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512) at paths frontend/public/icons/icon-{size}.png. Include orientation 'portrait-primary', scope '/', and categories ['health', 'medical', 'lifestyle']."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add <link rel='manifest' href='/manifest.json'> in the <head> section to link the Web App Manifest, ensuring it appears before other meta tags for proper PWA recognition."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement service worker with cache-first strategy for static assets and network-first for API calls, enabling offline functionality",
+      "acceptanceCriteria": [
+        "sw.js is present in frontend/public",
+        "Service worker is registered on app load",
+        "Static assets (JS, CSS, images) are cached on install",
+        "App shells and previously loaded pages are accessible offline",
+        "Network requests fall back to cache when offline"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/sw.js",
+          "operation": "create",
+          "description": "Create service worker implementing cache-first strategy for static assets (JS, CSS, fonts, images under /assets/) and network-first strategy with cache fallback for API calls. Include install event that pre-caches core app shell files (index.html, main CSS/JS bundles, logo assets). Exclude Internet Identity and ICP canister URLs from interception to preserve authentication flows. Define cache names with versioning (e.g., 'phc-nepal-static-v1', 'phc-nepal-dynamic-v1'). Implement activate event to clean up old caches."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Register the service worker after the React app mounts by adding serviceWorker registration code that checks for 'serviceWorker' in navigator, registers '/sw.js', and handles registration success/failure with console logging. Ensure registration only occurs in production builds (check import.meta.env.PROD)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add all required PWA meta tags to index.html for mobile optimization and iOS compatibility",
+      "acceptanceCriteria": [
+        "index.html includes theme-color meta tag matching the app palette",
+        "Apple PWA meta tags are present for iOS compatibility",
+        "Viewport meta tag is set for mobile-optimized display",
+        "manifest.json is linked in <head>"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add PWA meta tags in <head>: <meta name='theme-color' content='#[earthy-green-hex]'> matching the app's primary color, <meta name='apple-mobile-web-app-capable' content='yes'>, <meta name='apple-mobile-web-app-status-bar-style' content='default'>, <meta name='apple-mobile-web-app-title' content='PHC Nepal'>, <link rel='apple-touch-icon' href='/icons/icon-192.png'>, and ensure viewport meta is set to 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes' for optimal mobile display. Add <meta name='description' content='[maternal and child health description]'> for SEO."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Wire generated PWA app icons into the manifest and public directory structure",
+      "acceptanceCriteria": [
+        "Icon files exist at the paths referenced in manifest.json",
+        "At minimum 192x192 and 512x512 PNG icons are present",
+        "Icons are visually consistent with the app's earthy green/saffron design theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/icons/icon-192.png",
+          "operation": "create",
+          "description": "Copy the generated icon from workspace path frontend/public/assets/generated/pwa-icon-192.dim_192x192.png to frontend/public/icons/icon-192.png for use as the primary PWA icon. This icon features an earthy green background with a white mother-and-child or lotus health symbol."
+        },
+        {
+          "path": "frontend/public/icons/icon-512.png",
+          "operation": "create",
+          "description": "Copy the generated icon from workspace path frontend/public/assets/generated/pwa-icon-512.dim_512x512.png to frontend/public/icons/icon-512.png for use as the high-resolution PWA icon. This icon features an earthy green background with a white mother-and-child or lotus health symbol."
+        },
+        {
+          "path": "frontend/public/icons/icon-72.png",
+          "operation": "create",
+          "description": "Create or resize the 192px icon to 72x72 PNG format at frontend/public/icons/icon-72.png for legacy Android devices, maintaining the earthy green background and health symbol design."
+        },
+        {
+          "path": "frontend/public/icons/icon-96.png",
+          "operation": "create",
+          "description": "Create or resize the 192px icon to 96x96 PNG format at frontend/public/icons/icon-96.png for legacy Android devices, maintaining the earthy green background and health symbol design."
+        },
+        {
+          "path": "frontend/public/icons/icon-128.png",
+          "operation": "create",
+          "description": "Create or resize the 192px icon to 128x128 PNG format at frontend/public/icons/icon-128.png for Android devices, maintaining the earthy green background and health symbol design."
+        },
+        {
+          "path": "frontend/public/icons/icon-144.png",
+          "operation": "create",
+          "description": "Create or resize the 192px icon to 144x144 PNG format at frontend/public/icons/icon-144.png for Android devices, maintaining the earthy green background and health symbol design."
+        },
+        {
+          "path": "frontend/public/icons/icon-152.png",
+          "operation": "create",
+          "description": "Create or resize the 192px icon to 152x152 PNG format at frontend/public/icons/icon-152.png for iOS devices, maintaining the earthy green background and health symbol design."
+        },
+        {
+          "path": "frontend/public/icons/icon-384.png",
+          "operation": "create",
+          "description": "Create or resize the 512px icon to 384x384 PNG format at frontend/public/icons/icon-384.png for high-DPI Android devices, maintaining the earthy green background and health symbol design."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add 'Add to Home Screen' install prompt banner with beforeinstallprompt detection, trilingual support, and dismissible UI",
+      "acceptanceCriteria": [
+        "A dismissible install banner appears on Android Chrome when the app is installable",
+        "Banner uses the app's design system colors and is trilingual (respects the active language)",
+        "Banner does not appear if app is already installed in standalone mode",
+        "User can dismiss the banner and it does not reappear in the same session"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/InstallPromptBanner.tsx",
+          "operation": "create",
+          "description": "Create a React component that listens for the beforeinstallprompt event, stores the deferred prompt, and renders a dismissible banner when the app is installable. The banner should display translated text from the LanguageContext (t.installPrompt.title, t.installPrompt.message, t.installPrompt.install, t.installPrompt.dismiss). Use state to track dismissal and store it in sessionStorage to prevent re-showing in the same session. Check for standalone display mode (window.matchMedia('(display-mode: standalone)').matches) and hide the banner if already installed. Style the banner using Tailwind classes matching the app's earthy green/saffron palette with a sticky or fixed position at the bottom (above BottomNav). Include an 'Install' button that calls prompt.prompt() and a close/dismiss button."
+        },
+        {
+          "path": "frontend/src/i18n/translations/en.ts",
+          "operation": "modify",
+          "description": "Add installPrompt translation keys to the English translations: installPrompt: { title: 'Install PHC Nepal', message: 'Install our app for quick access to maternal and child health guidance, even offline.', install: 'Install', dismiss: 'Not now' }."
+        },
+        {
+          "path": "frontend/src/i18n/translations/hi.ts",
+          "operation": "modify",
+          "description": "Add installPrompt translation keys to the Hindi translations with appropriate Hindi text for title, message, install, and dismiss buttons."
+        },
+        {
+          "path": "frontend/src/i18n/translations/ne.ts",
+          "operation": "modify",
+          "description": "Add installPrompt translation keys to the Nepali translations with appropriate Nepali text for title, message, install, and dismiss buttons."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import and render the InstallPromptBanner component at the root level of the App component, positioned above the BottomNav so it is visible on all authenticated pages (after profile setup is complete). Ensure it renders conditionally based on authentication state (only show when isAuthenticated is true)."
+        }
+      ]
+    }
+  ]
+}

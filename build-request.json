@@ -1,0 +1,127 @@
+{
+  "kind": "build_request",
+  "title": "PWA optimization for Android Google Play Store packaging",
+  "projectName": "PHC Nepal Health",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a complete Web App Manifest (manifest.json) in the frontend/public directory with app name 'PHC Nepal Child & Maternal Health', short name 'PHC Nepal', description referencing the maternal and child health focus, start URL, display mode set to 'standalone', background color and theme color matching the app's earthy green/saffron palette, and all required icon sizes (72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512) for Google Play Store compatibility.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "PWA approach",
+          "full web manifest",
+          "standalone display mode"
+        ]
+      },
+      "acceptanceCriteria": [
+        "manifest.json is present in frontend/public and linked in index.html via <link rel='manifest'>",
+        "manifest includes name, short_name, description, start_url, display: standalone, theme_color, background_color, and icons array",
+        "Icons array covers all PWA-required sizes including 192x192 and 512x512",
+        "App installs correctly as a standalone PWA when opened in Chrome on Android"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Register a service worker (sw.js) in frontend/public that implements a cache-first strategy for static assets and a network-first strategy for API calls, enabling full offline functionality for previously visited pages. Register the service worker from main.tsx or index.html.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "service worker with offline caching"
+        ]
+      },
+      "acceptanceCriteria": [
+        "sw.js is present in frontend/public",
+        "Service worker is registered on app load",
+        "Static assets (JS, CSS, images) are cached on install",
+        "App shells and previously loaded pages are accessible offline",
+        "Network requests fall back to cache when offline"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add all required PWA meta tags to frontend/index.html including apple-touch-icon, apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, apple-mobile-web-app-title, theme-color, and viewport meta tags optimized for mobile display.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "standalone display mode",
+          "Google Play Store",
+          "PWABuilder or Bubblewrap"
+        ]
+      },
+      "acceptanceCriteria": [
+        "index.html includes theme-color meta tag matching the app palette",
+        "Apple PWA meta tags are present for iOS compatibility",
+        "Viewport meta tag is set for mobile-optimized display",
+        "manifest.json is linked in <head>"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Generate PWA app icons in all required sizes (192x192 and 512x512 minimum, ideally full set) and place them in frontend/public/icons. Icons should use the PHC Nepal earthy green color scheme with a recognizable health/maternal symbol consistent with the app's visual identity.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "full web manifest",
+          "Google Play Store packaging via PWABuilder/Bubblewrap"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Icon files exist at the paths referenced in manifest.json",
+        "At minimum 192x192 and 512x512 PNG icons are present",
+        "Icons are visually consistent with the app's earthy green/saffron design theme"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add an 'Add to Home Screen' install prompt banner in the app UI (visible on the dashboard or login page) that detects the beforeinstallprompt event and shows a dismissible banner encouraging users to install the app on their Android device.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "standalone display mode",
+          "Google Play Store"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A dismissible install banner appears on Android Chrome when the app is installable",
+        "Banner uses the app's design system colors and is trilingual (respects the active language)",
+        "Banner does not appear if app is already installed in standalone mode",
+        "User can dismiss the banner and it does not reappear in the same session"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
+    "Service worker must not intercept Internet Identity or ICP canister API calls in ways that break authentication",
+    "All icon and manifest paths must be relative and work correctly under the ICP asset canister serving"
+  ],
+  "nonGoals": [
+    "Native Android app development with Capacitor or Cordova",
+    "Publishing directly to Google Play Store (user will use PWABuilder/Bubblewrap externally)",
+    "iOS App Store packaging",
+    "Backend changes"
+  ],
+  "imageRequirements": {
+    "required": [
+      "PHC Nepal app icon with earthy green background and a white mother-and-child or lotus health symbol, suitable for Android home screen (pwa-icon-192.dim_192x192.png)",
+      "PHC Nepal app icon high-resolution version with earthy green background and a white mother-and-child or lotus health symbol (pwa-icon-512.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}

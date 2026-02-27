@@ -1,0 +1,7 @@
+{
+  "frontend/src/pages/MilestonesPage.tsx": "Child development milestones page organized by age bands (0-3m through 4-5y) with physical/cognitive/language/social domains, plus a common problems tab for under-5 children with management advice and danger signs.",
+  "frontend/src/pages/SupplementaryFeedingPage.tsx": "Supplementary feeding and post-FP services page with age-appropriate complementary feeding guidance and family planning methods. Fixes duplicate object key error by replacing the static color map with a function that uses string matching.",
+  "frontend/src/pages/CommunityPage.tsx": "Community section page where authenticated users can create posts and replies with category filtering, OTP verification gate (UI-level), and local state management. Uses PostCategory enum values correctly instead of string literals.",
+  "frontend/src/pages/ProfilePage.tsx": "User profile page displaying and allowing editing of health profile data including name, age, country, role, due date/child DOB with backend persistence.",
+  "frontend/src/pages/AboutPage.tsx": "About page displaying PHC Nepal organization information with tappable links for website, email, WhatsApp (24/7), Facebook, YouTube, and emergency contacts."
+}

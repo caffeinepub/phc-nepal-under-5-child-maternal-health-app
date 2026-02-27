@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Maternal and child health app for PHC Nepal with comprehensive modules including preconception, pregnancy/ANC/PNC tracking, immunization (Nepal 2026 NIP + India UIP), WHO growth charts, child development, community forum, and PWA optimization for Google Play Store. Features trilingual support (English, Hindi, Nepali), warm earthy UI, clinical accuracy upgrades, and enhanced user profiles.",
+  "architectural_notes": [
+    "Trilingual support (English, Hindi, Nepali) required across all modules and UI elements",
+    "PWA setup (web manifest, service worker, offline caching, standalone mode) for Google Play via PWABuilder/Bubblewrap — no native Capacitor support in platform",
+    "Immunization schedule shown based on user profile location: Nepal 2026 NIP or India UIP",
+    "No live AI/LLM integration; baby care tips use curated age-smart content system",
+    "Push notifications not supported; use in-app dashboard reminder banners instead"
+  ],
+  "known_issues": [
+    "Multiple build errors encountered during deployment; required redeploys"
+  ],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- PHC Nepal app icon with earthy green background and a white mother-and-child or lotus health symbol, suitable for Android home screen (pwa-icon-192.dim_192x192.png)\n- PHC Nepal app icon high-resolution version with earthy green background and a white mother-and-child or lotus health symbol (pwa-icon-512.dim_512x512.png)",
+  "existing_features": [],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Preconception module with LMP-based ovulation calculator, pre-pregnancy risk screening checklist, and local nutrition guidance",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Interactive WHO growth charts with percentile engine (3rd/15th/50th/85th/97th) for weight/height/head circumference",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Age-tailored baby care tips for colic, teething, sleep disturbances within child development module",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "In-app dashboard reminder banners for ANC/PNC checkups and immunization appointments (color-coded, trilingual)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Enhanced onboarding flow guiding new users to set up profile and log first health event",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Enhanced profile with medical history, allergies, preferred language fields and profile completion progress bar",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Nepal 2026 National Immunization Schedule and India UIP Schedule based on user profile location",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "WHO 8-contact ANC model and PNC timing (24hrs/day3/day7/6wks) clinical accuracy upgrade",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Community forum enhancements: user profile integration, moderator tools, upvote/downvote system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "PWA optimization for Android Google Play Store packaging via PWABuilder/Bubblewrap",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Create a complete Web App Manifest (manifest.json) in the frontend/public directory with app name 'PHC Nepal Child & Maternal Health', short name 'PHC Nepal', description referencing the maternal and child health focus, start URL, display mode set to 'standalone', background color and theme color matching the app's earthy green/saffron palette, and all required icon sizes (72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512) for Google Play Store compatibility.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Register a service worker (sw.js) in frontend/public that implements a cache-first strategy for static assets and a network-first strategy for API calls, enabling full offline functionality for previously visited pages. Register the service worker from main.tsx or index.html.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add all required PWA meta tags to frontend/index.html including apple-touch-icon, apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, apple-mobile-web-app-title, theme-color, and viewport meta tags optimized for mobile display.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Generate PWA app icons in all required sizes (192x192 and 512x512 minimum, ideally full set) and place them in frontend/public/icons. Icons should use the PHC Nepal earthy green color scheme with a recognizable health/maternal symbol consistent with the app's visual identity.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add an 'Add to Home Screen' install prompt banner in the app UI (visible on the dashboard or login page) that detects the beforeinstallprompt event and shows a dismissible banner encouraging users to install the app on their Android device.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "PHC Nepal Child & Maternal Health",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
